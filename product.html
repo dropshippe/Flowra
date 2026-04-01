@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop — Flowra Disc</title>
+  <meta name="description" content="Buy the Flowra Disc — medical-grade reusable period disc with satin pouch. $34.95 with free worldwide shipping." />
+  <link rel="stylesheet" href="flowra.css" />
+</head>
+<body>
+
+<main>
+  <div class="container" style="padding:64px 32px 120px">
+
+    <p class="breadcrumb"><a href="index.html">Home</a> &nbsp;·&nbsp; Shop</p>
+
+    <div class="product-grid">
+
+      <!-- Image -->
+      <div class="sticky-img">
+        <div class="hero-img-wrap">
+          <div class="hero-img-glow"></div>
+          <div class="hero-img-box" style="border-radius:var(--r-xl)">
+            <img src="product.jpg" alt="Flowra Disc with satin pouch" onerror="this.style.display='none'" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Info -->
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
+          <span class="review-stars">★★★★★</span>
+          <a href="reviews.html" style="font-size:13px;color:var(--muted);border-bottom:1px solid var(--rose-border);padding-bottom:1px">4.9 · 12 reviews</a>
+        </div>
+
+        <h1 style="font-family:var(--ff-serif);font-size:42px;margin-bottom:16px;line-height:1.1">Flowra Disc</h1>
+        <p style="font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:32px">
+          The Flowra Disc is a soft, flexible period disc crafted from 100% medical-grade silicone. Designed for up to 12 hours of continuous wear — through workouts, sleep, and everything in between. A safer, healthier, life-changing alternative to tampons and menstrual cups.
+        </p>
+
+        <p style="font-family:var(--ff-serif);font-size:36px;margin-bottom:8px">$34.95</p>
+        <p style="font-size:13px;color:var(--hint);margin-bottom:32px">Free worldwide shipping · Usually ships within 1 business day</p>
+
+        <!-- Qty + CTA -->
+        <div style="display:flex;gap:12px;margin-bottom:28px;align-items:center">
+          <div class="qty-wrap">
+            <button class="qty-btn" onclick="changeQty(-1)">−</button>
+            <span class="qty-num" id="qty">1</span>
+            <button class="qty-btn" onclick="changeQty(1)">+</button>
+          </div>
+          <button class="btn btn-primary" style="flex:1" onclick="openCheckout()">Add to Cart</button>
+        </div>
+
+        <!-- Trust -->
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:40px">
+          <p style="font-size:13px;color:var(--muted)">✓ &nbsp;30-day satisfaction guarantee</p>
+          <p style="font-size:13px;color:var(--muted)">✓ &nbsp;Free returns on damaged or incorrect items</p>
+          <p style="font-size:13px;color:var(--muted)">✓ &nbsp;Discreet packaging — no branding on box</p>
+          <p style="font-size:13px;color:var(--muted)">✓ &nbsp;Payments secured by Stripe</p>
+          <p style="font-size:13px;color:var(--muted)">✓ &nbsp;Free worldwide shipping on every order</p>
+        </div>
+
+        <hr class="divider" style="margin-bottom:36px" />
+
+        <!-- What's included -->
+        <div style="margin-bottom:36px">
+          <p style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--hint);margin-bottom:16px">What's included</p>
+          <p class="include-item">— One Flowra Disc (medical-grade silicone)</p>
+          <p class="include-item">— Luxury satin storage pouch</p>
+          <p class="include-item">— Quick-start guide</p>
+        </div>
+
+        <hr class="divider" style="margin-bottom:36px" />
+
+        <!-- Specs -->
+        <div>
+          <p style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--hint);margin-bottom:8px">Specifications</p>
+          <div class="spec-row"><span class="spec-label">Material</span><span>Medical-grade silicone</span></div>
+          <div class="spec-row"><span class="spec-label">Wear time</span><span>Up to 12 hours</span></div>
+          <div class="spec-row"><span class="spec-label">Capacity</span><span>~37ml (3× a regular tampon)</span></div>
+          <div class="spec-row"><span class="spec-label">Lifespan</span><span>Up to 5 years with proper care</span></div>
+          <div class="spec-row"><span class="spec-label">Fit</span><span>One size fits most</span></div>
+          <div class="spec-row"><span class="spec-label">Certification</span><span>ISO 10993 biocompatibility</span></div>
+          <div class="spec-row"><span class="spec-label">BPA free</span><span>Yes</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Checkout modal (same as index) -->
+<div class="modal-overlay" id="checkout-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeCheckout()">×</button>
+    <h2 class="modal-title">Complete your order</h2>
+    <p class="modal-sub">Flowra Disc + Satin Pouch — $34.95</p>
+    <div class="modal-trust">
+      <span>🌍 Free worldwide shipping</span>
+      <span>↩️ 30-day guarantee</span>
+      <span>🔒 Secure checkout</span>
+    </div>
+    <div id="payment-element"></div>
+    <p id="payment-message"></p>
+    <button class="btn btn-primary btn-full" id="pay-btn" onclick="handlePayment()">Pay $34.95</button>
+    <p style="font-size:12px;color:var(--hint);text-align:center;margin-top:12px">🔒 Secured by Stripe · No card details stored</p>
+  </div>
+</div>
+
+<script src="flowra-shared.js"></script>
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+  const STRIPE_KEY = 'pk_test_REPLACE_ME';
+  const BACKEND_URL = 'https://your-backend.vercel.app';
+  let stripe, elements;
+
+  function changeQty(d) {
+    const el = document.getElementById('qty');
+    el.textContent = Math.max(1, parseInt(el.textContent) + d);
+  }
+
+  async function openCheckout() {
+    document.getElementById('checkout-modal').classList.add('open');
+    if (!stripe) {
+      stripe = Stripe(STRIPE_KEY);
+      try {
+        const res = await fetch(BACKEND_URL + '/api/create-payment-intent', { method: 'POST' });
+        const { clientSecret } = await res.json();
+        elements = stripe.elements({ clientSecret, appearance: {
+          theme: 'stripe',
+          variables: { colorPrimary: '#7a1e2e', colorBackground: '#fdf5f3', colorText: '#2e1a1a', fontFamily: 'Lato, sans-serif', borderRadius: '8px' }
+        }});
+        elements.create('payment').mount('#payment-element');
+      } catch(e) {
+        document.getElementById('payment-message').style.display = 'block';
+        document.getElementById('payment-message').textContent = 'Could not load payment form. Please try again.';
+      }
+    }
+  }
+
+  function closeCheckout() { document.getElementById('checkout-modal').classList.remove('open'); }
+
+  async function handlePayment() {
+    const btn = document.getElementById('pay-btn');
+    const msg = document.getElementById('payment-message');
+    btn.textContent = 'Processing…'; btn.disabled = true; msg.style.display = 'none';
+    const { error } = await stripe.confirmPayment({ elements, confirmParams: { return_url: window.location.origin + '/success.html' } });
+    if (error) { msg.textContent = error.message; msg.style.display = 'block'; btn.textContent = 'Pay $34.95'; btn.disabled = false; }
+  }
+
+  document.getElementById('checkout-modal').addEventListener('click', function(e) { if (e.target === this) closeCheckout(); });
+</script>
+</body>
+</html>
