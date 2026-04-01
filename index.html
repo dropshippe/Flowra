@@ -7,165 +7,78 @@
   <meta name="description" content="Medical-grade reusable period disc. Up to 12 hours of protection. No chemicals, no TSS risk. Free worldwide shipping." />
   <link rel="stylesheet" href="flowra.css" />
   <style>
-    /* Urgency banner */
-    .urgency-bar {
-      background: #7a1e2e;
-      color: #fff;
-      text-align: center;
-      padding: 10px 20px;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: .04em;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-    .urgency-bar .stock { color: #ffd4dc; }
-    .countdown { display: flex; gap: 6px; align-items: center; }
-    .cd-block { background: rgba(255,255,255,.2); border-radius: 6px; padding: 3px 8px; font-size: 14px; font-weight: 700; min-width: 36px; text-align: center; }
-    .cd-sep { opacity: .6; font-size: 16px; }
+    .urgency-bar{background:#7a1e2e;color:#fff;text-align:center;padding:10px 20px;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
+    .cd{background:rgba(255,255,255,.2);border-radius:6px;padding:3px 8px;font-size:14px;font-weight:700;min-width:36px;text-align:center}
 
-    /* Trust badges */
-    .trust-badges {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      background: var(--white);
-      border-top: 1.5px solid var(--rose-border);
-      border-bottom: 1.5px solid var(--rose-border);
-    }
-    .badge-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 16px 14px;
-      border-left: 1.5px solid var(--rose-border);
-      justify-content: center;
-    }
-    .badge-item:first-child { border-left: none; }
-    .badge-icon { font-size: 20px; flex-shrink: 0; }
-    .badge-title { font-size: 11px; font-weight: 700; color: var(--ink); }
-    .badge-sub { font-size: 10px; color: var(--hint); }
+
+
+    /* Illustration feature rows */
+    .feat-row{padding:100px 0}
+    .feat-row.tinted{background:#fdf5f3}
+    .feat-inner{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+    .feat-inner.flip{direction:rtl}
+    .feat-inner.flip>*{direction:ltr}
+    .illus-box{background:var(--rose-pale);border-radius:var(--r-xl);padding:40px;display:flex;align-items:center;justify-content:center;border:1.5px solid var(--rose-border);min-height:320px}
+    .feat-copy h2{font-family:var(--ff-serif);font-size:clamp(26px,3vw,36px);color:var(--ink);margin-bottom:14px;line-height:1.2}
+    .feat-copy p{font-size:15px;color:var(--muted);line-height:1.85;margin-bottom:16px}
+    .feat-list{list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:4px}
+    .feat-list li{font-size:14px;color:var(--muted);padding-left:22px;position:relative;line-height:1.6}
+    .feat-list li::before{content:'✓';position:absolute;left:0;color:var(--rose-deep);font-weight:700}
 
     /* Before/after */
-    .before-after {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      gap: 0;
-      border: 1.5px solid var(--rose-border);
-      border-radius: var(--r-lg);
-      overflow: hidden;
-    }
-    .ba-col { padding: 36px 32px; }
-    .ba-col.before { background: #fff5f0; }
-    .ba-col.after  { background: var(--rose-blush); }
-    .ba-divider {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--white);
-      border-left: 1.5px solid var(--rose-border);
-      border-right: 1.5px solid var(--rose-border);
-      padding: 0 16px;
-      writing-mode: vertical-rl;
-      font-family: var(--ff-serif);
-      font-size: 13px;
-      color: var(--hint);
-      letter-spacing: .1em;
-    }
-    .ba-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-    .ba-col.before .ba-label { color: #a05030; }
-    .ba-col.after  .ba-label { color: var(--rose-deep); }
-    .ba-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-    .ba-list li { font-size: 13px; line-height: 1.6; padding-left: 22px; position: relative; }
-    .ba-col.before .ba-list li { color: #8a5040; }
-    .ba-col.before .ba-list li::before { content: '✗'; position: absolute; left: 0; color: #d4603a; font-weight: 700; }
-    .ba-col.after  .ba-list li { color: #6a2838; }
-    .ba-col.after  .ba-list li::before { content: '✓'; position: absolute; left: 0; color: var(--rose-deep); font-weight: 700; }
+    .ba-wrap{display:grid;grid-template-columns:1fr auto 1fr;border:1.5px solid var(--rose-border);border-radius:var(--r-lg);overflow:hidden}
+    .ba-col{padding:32px 28px}
+    .ba-before{background:#fff5f0}
+    .ba-after{background:var(--rose-blush)}
+    .ba-div{display:flex;align-items:center;justify-content:center;background:var(--white);border-left:1.5px solid var(--rose-border);border-right:1.5px solid var(--rose-border);padding:0 16px;writing-mode:vertical-rl;font-family:var(--ff-serif);font-size:13px;color:var(--hint);letter-spacing:.1em}
+    .ba-lbl{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px}
+    .ba-before .ba-lbl{color:#a05030}
+    .ba-after .ba-lbl{color:var(--rose-deep)}
+    .ba-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+    .ba-list li{font-size:13px;padding-left:20px;position:relative;line-height:1.6}
+    .ba-before .ba-list li{color:#8a5040}
+    .ba-before .ba-list li::before{content:'✗';position:absolute;left:0;color:#d4603a;font-weight:700}
+    .ba-after .ba-list li{color:#6a2838}
+    .ba-after .ba-list li::before{content:'✓';position:absolute;left:0;color:var(--rose-deep);font-weight:700}
 
     /* Bundle */
-    .bundle-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-    .bundle-card {
-      border: 1.5px solid var(--rose-border);
-      border-radius: var(--r-lg);
-      padding: 28px 24px;
-      background: var(--white);
-      text-align: center;
-      position: relative;
-      cursor: pointer;
-      transition: all .2s;
-    }
-    .bundle-card:hover { box-shadow: 0 4px 24px rgba(122,30,46,.1); }
-    .bundle-card.popular {
-      border: 2.5px solid var(--rose-deep);
-      background: var(--rose-blush);
-    }
-    .popular-tag {
-      position: absolute;
-      top: -14px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--rose-deep);
-      color: #fff;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      padding: 5px 16px;
-      border-radius: var(--r-pill);
-      white-space: nowrap;
-    }
-    .bundle-qty { font-family: var(--ff-serif); font-size: 42px; color: var(--rose-deep); margin-bottom: 4px; }
-    .bundle-name { font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 12px; }
-    .bundle-price { font-family: var(--ff-serif); font-size: 28px; color: var(--ink); margin-bottom: 4px; }
-    .bundle-per { font-size: 12px; color: var(--hint); margin-bottom: 12px; }
-    .bundle-save {
-      display: inline-block;
-      background: #fde8e4;
-      color: var(--rose-deep);
-      font-size: 11px;
-      font-weight: 700;
-      padding: 4px 12px;
-      border-radius: var(--r-pill);
-      margin-bottom: 16px;
-    }
-    .bundle-card.popular .bundle-save { background: var(--white); }
-    .bundle-includes { font-size: 12px; color: var(--muted); line-height: 1.7; }
-    @media (max-width: 760px) { .bundle-grid { grid-template-columns: 1fr; } .before-after { grid-template-columns: 1fr; } .ba-divider { writing-mode: horizontal-tb; padding: 16px; border: none; border-top: 1.5px solid var(--rose-border); border-bottom: 1.5px solid var(--rose-border); } }
+    .bundle-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .bc{border:1.5px solid var(--rose-border);border-radius:var(--r-lg);padding:28px 24px;background:var(--white);text-align:center;position:relative;cursor:pointer;transition:box-shadow .2s}
+    .bc:hover{box-shadow:0 4px 24px rgba(122,30,46,.1)}
+    .bc.pop{border:2.5px solid var(--rose-deep);background:var(--rose-blush)}
+    .pop-tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--rose-deep);color:#fff;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 16px;border-radius:var(--r-pill);white-space:nowrap}
+    .bq{font-family:var(--ff-serif);font-size:40px;color:var(--rose-deep);margin-bottom:4px}
+    .bn{font-size:12px;font-weight:700;color:var(--ink);margin-bottom:10px}
+    .bp{font-family:var(--ff-serif);font-size:28px;color:var(--ink);margin-bottom:4px}
+    .bper{font-size:11px;color:var(--hint);margin-bottom:10px}
+    .bsave{display:inline-block;background:var(--rose-blush);color:var(--rose-deep);font-size:11px;font-weight:700;padding:3px 12px;border-radius:var(--r-pill);margin-bottom:14px}
+    .bc.pop .bsave{background:var(--white)}
+    .binc{font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:16px}
+
+    @media(max-width:860px){.feat-inner,.feat-inner.flip{grid-template-columns:1fr;direction:ltr}.ba-wrap{grid-template-columns:1fr}.ba-div{writing-mode:horizontal-tb;padding:12px;border:none;border-top:1.5px solid var(--rose-border);border-bottom:1.5px solid var(--rose-border)}.bundle-grid{grid-template-columns:1fr}.trust-bar{grid-template-columns:1fr 1fr}}
   </style>
 </head>
 <body>
 
-<!-- ── URGENCY BANNER ── -->
+<!-- Urgency bar -->
 <div class="urgency-bar">
-  <span>🔥 <span class="stock">Only 47 units left</span> — Sale ends in</span>
-  <div class="countdown">
-    <div class="cd-block" id="cd-h">02</div><span class="cd-sep">:</span>
-    <div class="cd-block" id="cd-m">47</div><span class="cd-sep">:</span>
-    <div class="cd-block" id="cd-s">33</div>
+  <span>🔥 Only 47 left — Sale ends in</span>
+  <div style="display:flex;gap:6px;align-items:center">
+    <div class="cd" id="cdh">02</div><span style="opacity:.6">:</span>
+    <div class="cd" id="cdm">47</div><span style="opacity:.6">:</span>
+    <div class="cd" id="cds">33</div>
   </div>
-  <span>⚡ Free worldwide shipping today only</span>
+  <span>⚡ Free worldwide shipping today</span>
 </div>
 
-<!-- ── HERO ── -->
+<!-- HERO -->
 <section style="padding:72px 0 96px;border-bottom:1.5px solid var(--rose-border);background:var(--cream)">
   <div class="container">
     <div class="hero-grid">
       <div class="hero-img-wrap">
         <div class="hero-img-glow"></div>
         <div class="hero-img-box" style="border-radius:var(--r-xl);overflow:hidden;aspect-ratio:3/4">
-          <img src="model-smiling.jpg" alt="Woman smiling holding Flowra disc" style="width:100%;height:100%;object-fit:cover" />
+          <img src="model-smiling.jpg" alt="Woman holding Flowra disc" style="width:100%;height:100%;object-fit:cover;object-position:center top" />
         </div>
       </div>
       <div>
@@ -177,10 +90,9 @@
           <span style="color:#c4703a;font-size:16px;letter-spacing:2px">★★★★★</span>
           <span style="font-size:13px;color:var(--muted)"><strong style="color:var(--ink)">4.9</strong> · <a href="reviews.html" style="color:var(--rose-deep);border-bottom:1px solid var(--rose-soft)">127 verified reviews</a></span>
         </div>
-        <p style="font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:28px;max-width:420px">
+        <p style="font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:24px;max-width:420px">
           Say goodbye to tampons forever. The Flowra Disc gives you up to 12 hours of safe, comfortable, chemical-free protection — and once you try it, you'll never look back.
         </p>
-        <!-- Urgency nudge -->
         <div style="background:#fff5f0;border:1.5px solid #f0c8b8;border-radius:var(--r-md);padding:12px 16px;margin-bottom:24px;display:flex;align-items:center;gap:10px">
           <span style="font-size:18px">🔥</span>
           <div>
@@ -207,31 +119,9 @@
   </div>
 </section>
 
-<!-- ── TRUST BADGES ── -->
-<div class="trust-badges">
-  <div class="badge-item">
-    <span class="badge-icon">🔒</span>
-    <div><p class="badge-title">Stripe Secured</p><p class="badge-sub">256-bit SSL encryption</p></div>
-  </div>
-  <div class="badge-item">
-    <span class="badge-icon">↩️</span>
-    <div><p class="badge-title">30-Day Guarantee</p><p class="badge-sub">Full refund, no questions</p></div>
-  </div>
-  <div class="badge-item">
-    <span class="badge-icon">🌍</span>
-    <div><p class="badge-title">Free Worldwide Shipping</p><p class="badge-sub">Every single order</p></div>
-  </div>
-  <div class="badge-item">
-    <span class="badge-icon">🛡️</span>
-    <div><p class="badge-title">Medical-Grade</p><p class="badge-sub">ISO 10993 certified silicone</p></div>
-  </div>
-  <div class="badge-item">
-    <span class="badge-icon">📦</span>
-    <div><p class="badge-title">Discreet Packaging</p><p class="badge-sub">No branding on the box</p></div>
-  </div>
-</div>
 
-<!-- ── STRIP ── -->
+
+<!-- STRIP -->
 <div class="strip">
   <div class="strip-item"><p class="strip-label">Medical-grade silicone</p><p class="strip-sub">100% body-safe, BPA-free</p></div>
   <div class="strip-item"><p class="strip-label">12 hours protection</p><p class="strip-sub">Day, night &amp; exercise</p></div>
@@ -239,206 +129,292 @@
   <div class="strip-item"><p class="strip-label">Free worldwide shipping</p><p class="strip-sub">Discreet packaging always</p></div>
 </div>
 
-<!-- ── LIFE CHANGING ── -->
+<!-- LIFE CHANGING -->
 <section class="life-section">
   <div class="container">
     <p class="life-eyebrow">This changes everything</p>
     <h2 class="life-title">Not just a product.<br>A life-changing switch.</h2>
-    <p class="life-sub">Thousands of women describe the moment they tried Flowra as a turning point. No more planning your day around your period. No more midnight tampon runs. No more leaks, discomfort or dread. Just freedom.</p>
+    <p class="life-sub">Thousands of women describe the moment they tried Flowra as a turning point. No more planning your day around your period. Just freedom.</p>
     <div class="grid-3">
-      <div class="life-card"><p class="life-num">12h</p><p class="life-label">Uninterrupted protection</p><p class="life-desc">Wear it through work, the gym, swimming and sleep without a single check-in. Your period fits around your life — not the other way around.</p></div>
-      <div class="life-card"><p class="life-num">5yr</p><p class="life-label">One disc, years of freedom</p><p class="life-desc">One Flowra Disc replaces over 2,000 tampons or pads. Years of savings, thousands less in landfill, and zero monthly restocking.</p></div>
-      <div class="life-card"><p class="life-num">0</p><p class="life-label">Toxic chemicals. Zero.</p><p class="life-desc">Medical-grade silicone contains no bleach, pesticides, dioxins or synthetic fragrances — unlike conventional tampons.</p></div>
+      <div class="life-card"><p class="life-num">12h</p><p class="life-label">Uninterrupted protection</p><p class="life-desc">Wear through work, the gym, swimming and sleep without a single check-in.</p></div>
+      <div class="life-card"><p class="life-num">5yr</p><p class="life-label">One disc, years of freedom</p><p class="life-desc">Replaces 2,000+ tampons. Years of savings, zero restocking.</p></div>
+      <div class="life-card"><p class="life-num">0</p><p class="life-label">Toxic chemicals. Zero.</p><p class="life-desc">No bleach, pesticides, dioxins or synthetic fragrances — ever.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ── LIFESTYLE PHOTO ── -->
-<section style="padding:0;overflow:hidden;max-height:520px">
-  <img src="model-holding.jpg" alt="Woman holding Flowra disc" style="width:100%;height:520px;object-fit:cover;object-position:center 20%" />
-</section>
+<!-- ILLUSTRATION ROW 1 — 12 hour protection -->
+<div class="feat-row">
+  <div class="container">
+    <div class="feat-inner">
+      <div class="illus-box">
+        <svg viewBox="0 0 280 280" width="240" height="240" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="140" cy="140" r="110" fill="#fde8e4" stroke="#f0c0c8" stroke-width="2"/>
+          <circle cx="140" cy="140" r="85" fill="none" stroke="#e8a8b4" stroke-width="1.5" stroke-dasharray="4 4"/>
+          <!-- Clock face -->
+          <circle cx="140" cy="140" r="70" fill="#fff8f6" stroke="#f0c0c8" stroke-width="2"/>
+          <!-- Hour marks -->
+          <line x1="140" y1="76" x2="140" y2="86" stroke="#e8a8b4" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="204" y1="140" x2="194" y2="140" stroke="#e8a8b4" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="140" y1="204" x2="140" y2="194" stroke="#e8a8b4" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="76" y1="140" x2="86" y2="140" stroke="#e8a8b4" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- Clock hands -->
+          <line x1="140" y1="140" x2="140" y2="100" stroke="#7a1e2e" stroke-width="3" stroke-linecap="round"/>
+          <line x1="140" y1="140" x2="175" y2="148" stroke="#c47a84" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="140" cy="140" r="5" fill="#7a1e2e"/>
+          <!-- 12 label -->
+          <text x="140" y="98" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="#7a1e2e" font-weight="bold">12</text>
+          <!-- Rose petals decorative -->
+          <ellipse cx="68" cy="80" rx="10" ry="6" fill="#f0c0c8" opacity=".7" transform="rotate(-30 68 80)"/>
+          <ellipse cx="56" cy="92" rx="8" ry="5" fill="#e8a8b4" opacity=".6" transform="rotate(20 56 92)"/>
+          <ellipse cx="212" cy="80" rx="10" ry="6" fill="#f0c0c8" opacity=".7" transform="rotate(30 212 80)"/>
+          <ellipse cx="224" cy="92" rx="8" ry="5" fill="#e8a8b4" opacity=".6" transform="rotate(-20 224 92)"/>
+        </svg>
+      </div>
+      <div class="feat-copy">
+        <p class="section-eyebrow">Up to 12 hours</p>
+        <h2>Forget you're even wearing it</h2>
+        <p>The Flowra Disc sits naturally in the vaginal fornix — not the canal. Most women say they genuinely forget it's there within an hour of insertion.</p>
+        <ul class="feat-list">
+          <li>Wear through work, exercise and overnight</li>
+          <li>3× the capacity of a regular tampon</li>
+          <li>No hourly check-ins, ever</li>
+          <li>Safe for swimming and all sports</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
 
-<!-- ── BEFORE / AFTER ── -->
-<section class="sec-cream">
+<!-- ILLUSTRATION ROW 2 — Zero chemicals (flipped) -->
+<div class="feat-row tinted">
+  <div class="container">
+    <div class="feat-inner flip">
+      <div class="illus-box">
+        <svg viewBox="0 0 280 280" width="240" height="240" xmlns="http://www.w3.org/2000/svg">
+          <!-- Shield -->
+          <path d="M140 40 L200 65 L200 145 Q200 200 140 230 Q80 200 80 145 L80 65 Z" fill="#fde8e4" stroke="#e8a8b4" stroke-width="2"/>
+          <path d="M140 58 L188 78 L188 145 Q188 188 140 212 Q92 188 92 145 L92 78 Z" fill="#fff8f6" stroke="#f0c0c8" stroke-width="1.5"/>
+          <!-- Checkmark inside shield -->
+          <path d="M115 140 L132 158 L165 122" fill="none" stroke="#7a1e2e" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Small bubbles = zero chemicals -->
+          <circle cx="72" cy="100" r="12" fill="#fde8e4" stroke="#f0c0c8" stroke-width="1.5"/>
+          <text x="72" y="105" text-anchor="middle" font-family="Georgia" font-size="11" fill="#c47a84">0</text>
+          <circle cx="208" cy="100" r="12" fill="#fde8e4" stroke="#f0c0c8" stroke-width="1.5"/>
+          <text x="208" y="105" text-anchor="middle" font-family="Georgia" font-size="11" fill="#c47a84">0</text>
+          <circle cx="60" cy="170" r="9" fill="#fde8e4" stroke="#f0c0c8" stroke-width="1.5" opacity=".7"/>
+          <circle cx="220" cy="170" r="9" fill="#fde8e4" stroke="#f0c0c8" stroke-width="1.5" opacity=".7"/>
+          <!-- Label -->
+          <text x="140" y="254" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="#7a1e2e">Zero chemicals</text>
+        </svg>
+      </div>
+      <div class="feat-copy">
+        <p class="section-eyebrow">100% body-safe</p>
+        <h2>Medical-grade silicone — nothing else</h2>
+        <p>Conventional tampons contain bleach residue, pesticide traces and synthetic fibres sitting against your most absorbent tissue. Flowra contains none of that.</p>
+        <ul class="feat-list">
+          <li>ISO 10993 certified — same as surgical implants</li>
+          <li>Zero bleach, BPA, latex or synthetic dyes</li>
+          <li>No TSS risk — ever</li>
+          <li>Does not disrupt your natural pH balance</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ILLUSTRATION ROW 3 — Eco / savings -->
+<div class="feat-row">
+  <div class="container">
+    <div class="feat-inner">
+      <div class="illus-box">
+        <svg viewBox="0 0 280 280" width="240" height="240" xmlns="http://www.w3.org/2000/svg">
+          <!-- Leaf / earth shape -->
+          <ellipse cx="140" cy="130" rx="80" ry="90" fill="#fde8e4" stroke="#e8a8b4" stroke-width="2"/>
+          <!-- Dollar sign -->
+          <text x="140" y="148" text-anchor="middle" font-family="Georgia,serif" font-size="52" fill="#7a1e2e" opacity=".15">$</text>
+          <!-- Recycling arrows -->
+          <path d="M100 100 Q140 60 180 100" fill="none" stroke="#c47a84" stroke-width="3" stroke-linecap="round" marker-end="url(#arr)"/>
+          <path d="M180 160 Q140 200 100 160" fill="none" stroke="#c47a84" stroke-width="3" stroke-linecap="round" marker-end="url(#arr)"/>
+          <defs>
+            <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+              <path d="M2 2L8 5L2 8" fill="none" stroke="#c47a84" stroke-width="1.5" stroke-linecap="round"/>
+            </marker>
+          </defs>
+          <!-- Centre disc icon -->
+          <circle cx="140" cy="130" r="28" fill="#fff8f6" stroke="#f0c0c8" stroke-width="2"/>
+          <circle cx="140" cy="130" r="18" fill="#fde8e4" stroke="#e8a8b4" stroke-width="1.5"/>
+          <!-- 5yr text -->
+          <text x="140" y="248" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="#7a1e2e">One disc · Five years</text>
+          <!-- Small tampon crosses being removed -->
+          <line x1="55" y1="75" x2="65" y2="85" stroke="#d4603a" stroke-width="2" stroke-linecap="round"/>
+          <line x1="65" y1="75" x2="55" y2="85" stroke="#d4603a" stroke-width="2" stroke-linecap="round"/>
+          <line x1="215" y1="75" x2="225" y2="85" stroke="#d4603a" stroke-width="2" stroke-linecap="round"/>
+          <line x1="225" y1="75" x2="215" y2="85" stroke="#d4603a" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="feat-copy">
+        <p class="section-eyebrow">Save thousands</p>
+        <h2>Pay once. Sorted for 5 years.</h2>
+        <p>At $34.95, the Flowra Disc pays for itself in under two months. One disc replaces over 2,000 tampons and pads over its lifetime.</p>
+        <ul class="feat-list">
+          <li>Save $900+ over 5 years vs tampons</li>
+          <li>Removes 2,000+ disposables from landfill</li>
+          <li>No monthly restocking — ever again</li>
+          <li>Free worldwide shipping included</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BEFORE / AFTER -->
+<section style="padding:100px 0;background:#fdf5f3">
   <div class="container">
     <p class="section-eyebrow">Life before vs life with Flowra</p>
     <h2 class="section-title">Two very different periods</h2>
     <p class="section-sub">The difference isn't just convenience — it's your health, your wallet, and your entire relationship with your body.</p>
-    <div class="before-after">
-      <div class="ba-col before">
-        <p class="ba-label">❌ Life with tampons</p>
+    <div class="ba-wrap">
+      <div class="ba-col ba-before">
+        <p class="ba-lbl">❌ Life with tampons</p>
         <ul class="ba-list">
           <li>Changing every 4–6 hours, even at night</li>
           <li>TSS risk every single cycle</li>
-          <li>Dioxins &amp; pesticides against your most sensitive tissue</li>
+          <li>Dioxins &amp; pesticides against sensitive tissue</li>
           <li>Dryness, irritation and discomfort</li>
           <li>Spending $150–$200 every year, forever</li>
           <li>11,000+ plastic items in landfill per lifetime</li>
           <li>Can't have sex during your period</li>
-          <li>Constant anxiety — leaks, running out, timing</li>
-          <li>Carrying products everywhere, always</li>
-          <li>Dreading your period every single month</li>
+          <li>Constant anxiety about leaks and timing</li>
         </ul>
       </div>
-      <div class="ba-divider">vs</div>
-      <div class="ba-col after">
-        <p class="ba-label">✓ Life with Flowra</p>
+      <div class="ba-div">vs</div>
+      <div class="ba-col ba-after">
+        <p class="ba-lbl">✓ Life with Flowra</p>
         <ul class="ba-list">
-          <li>Up to 12 hours wear — sleep through the night</li>
+          <li>Up to 12 hours — sleep through the night</li>
           <li>Zero TSS risk, ever</li>
-          <li>100% medical-grade silicone — zero harmful chemicals</li>
-          <li>Completely comfortable — most women forget it's there</li>
+          <li>100% medical-grade silicone — zero chemicals</li>
+          <li>Completely comfortable — forget it's there</li>
           <li>$34.95 once, lasts up to 5 years</li>
           <li>Zero waste — one disc for your entire cycle</li>
           <li>Mess-free period sex — finally possible</li>
-          <li>Total peace of mind — just put it in and go</li>
-          <li>One small pouch in your bag, that's it</li>
-          <li>Period? What period? You barely notice it anymore</li>
+          <li>Total peace of mind — put it in and go</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── TAMPON DANGERS ── -->
-<section class="sec-pink">
+<!-- TAMPON DANGERS -->
+<section style="padding:100px 0;background:var(--cream)">
   <div class="container">
     <p class="section-eyebrow">Know what you're using</p>
     <h2 class="section-title">The truth about tampons</h2>
-    <p class="section-sub">Most women use tampons for 30+ years without ever questioning what's in them. Here's what the research shows.</p>
+    <p class="section-sub">Most women use tampons for 30+ years without ever questioning what's in them.</p>
     <div class="grid-2">
       <div class="warning-box">
         <h3 class="warning-title">What's hiding in conventional tampons</h3>
         <ul class="warning-list">
-          <li>Chlorine bleaching leaves behind dioxin residue — a known endocrine disruptor</li>
-          <li>Pesticide residues from non-organic cotton detected in commercial tampons</li>
-          <li>Synthetic rayon causes microtears in vaginal tissue, increasing chemical absorption</li>
-          <li>Toxic Shock Syndrome (TSS) — a rare but potentially fatal condition linked to tampon use</li>
-          <li>Artificial fragrances disrupt vaginal pH and cause irritation</li>
-          <li>Single-use plastics contribute to massive environmental waste every cycle</li>
-          <li>Over-absorption causes dryness and discomfort, even on lighter days</li>
+          <li>Chlorine bleaching leaves dioxin residue — a known endocrine disruptor</li>
+          <li>Pesticide residues detected in commercial tampons</li>
+          <li>Synthetic rayon causes microtears in vaginal tissue</li>
+          <li>Toxic Shock Syndrome (TSS) — rare but potentially fatal</li>
+          <li>Artificial fragrances disrupt vaginal pH</li>
+          <li>Thousands of single-use plastics entering landfill each cycle</li>
+          <li>Over-absorption causes dryness even on lighter days</li>
         </ul>
       </div>
       <div class="silicone-box">
         <h3 class="silicone-title">Why Flowra uses medical-grade silicone</h3>
         <ul class="silicone-list">
-          <li>ISO 10993 certified — same standard as surgical implants and pacemakers</li>
-          <li>100% non-porous — bacteria cannot grow on or inside the surface</li>
-          <li>Zero chemicals, dyes, bleach, BPA or latex — nothing harmful, ever</li>
-          <li>Does not absorb moisture or disrupt your natural pH balance</li>
-          <li>Hypoallergenic — safe for sensitive skin and latex allergies</li>
-          <li>Does not shed fibres or particles into body tissue</li>
-          <li>Sterilisable by boiling — completely clean cycle after cycle</li>
+          <li>ISO 10993 certified — same as surgical implants</li>
+          <li>100% non-porous — no bacterial growth possible</li>
+          <li>Zero chemicals, dyes, bleach, BPA or latex</li>
+          <li>Does not absorb moisture or disrupt pH balance</li>
+          <li>Hypoallergenic — safe for sensitive skin</li>
+          <li>Does not shed fibres into body tissue</li>
+          <li>Sterilisable by boiling — completely clean every cycle</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── COMPARISON TABLE ── -->
-<section class="sec-cream">
-  <div class="container">
-    <p class="section-eyebrow">Disc vs Cup vs Tampon</p>
-    <h2 class="section-title">Why a disc beats everything else</h2>
-    <p class="section-sub">Menstrual cups were a great step forward — but the Flowra Disc takes it further.</p>
-    <div class="compare-wrap" style="margin-bottom:20px">
-      <table>
-        <thead><tr><th></th><th class="bad">Tampon / Pad</th><th class="good">Flowra Disc</th></tr></thead>
-        <tbody>
-          <tr><td>Wear time</td><td class="bad"><span class="mark-bad">✗</span> 4–6 hours max</td><td class="good"><span class="mark-good">✓</span> Up to 12 hours</td></tr>
-          <tr><td>Chemical-free</td><td class="bad"><span class="mark-bad">✗</span> Bleach, dioxins, pesticides</td><td class="good"><span class="mark-good">✓</span> Zero chemicals</td></tr>
-          <tr><td>TSS risk</td><td class="bad"><span class="mark-bad">✗</span> Linked to tampon use</td><td class="good"><span class="mark-good">✓</span> No TSS risk</td></tr>
-          <tr><td>Mess-free during sex</td><td class="bad"><span class="mark-bad">✗</span> Not possible</td><td class="good"><span class="mark-good">✓</span> Yes — sits in fornix</td></tr>
-          <tr><td>Environmental impact</td><td class="bad"><span class="mark-bad">✗</span> 11,000+ items per lifetime</td><td class="good"><span class="mark-good">✓</span> One disc, 5 years</td></tr>
-          <tr><td>Long-term cost</td><td class="bad"><span class="mark-bad">✗</span> $3,000–$5,000 lifetime</td><td class="good"><span class="mark-good">✓</span> $34.95 — once</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- ── BUNDLE DEALS ── -->
-<section style="padding:100px 0;background:#fdf5f3">
+<!-- BUNDLE DEALS -->
+<section id="bundles" style="padding:100px 0;background:#fdf5f3">
   <div class="container">
     <p class="section-eyebrow">Best value</p>
     <h2 class="section-title">Stock up &amp; save</h2>
-    <p class="section-sub">Buy for yourself, gift one to a friend, or grab a spare. Every order ships free worldwide in discreet packaging.</p>
+    <p class="section-sub">Buy for yourself, gift one to a friend, or grab a spare. Every order ships free worldwide.</p>
     <div class="bundle-grid">
-
-      <!-- Single -->
-      <div class="bundle-card" onclick="openCheckout('single')">
-        <p class="bundle-qty">1</p>
-        <p class="bundle-name">Single Disc</p>
-        <p class="bundle-price">$34.95</p>
-        <p class="bundle-per">$34.95 per disc</p>
-        <span class="bundle-save">Free worldwide shipping</span>
-        <p class="bundle-includes">1 Flowra Disc<br>1 Satin storage pouch<br>Quick-start guide</p>
-        <button class="btn btn-outline" style="width:100%;margin-top:20px;justify-content:center">Add to Cart</button>
+      <div class="bc" onclick="openCheckout('single')">
+        <p class="bq">1</p>
+        <p class="bn">Single Disc</p>
+        <p class="bp">$34.95</p>
+        <p class="bper">$34.95 per disc</p>
+        <span class="bsave">Free worldwide shipping</span>
+        <p class="binc">1 Flowra Disc<br>1 Satin storage pouch<br>Quick-start guide</p>
+        <button class="btn btn-outline" style="width:100%;justify-content:center">Add to Cart</button>
       </div>
-
-      <!-- Bundle of 2 — popular -->
-      <div class="bundle-card popular" onclick="openCheckout('double')">
-        <span class="popular-tag">⭐ Most Popular</span>
-        <p class="bundle-qty">2</p>
-        <p class="bundle-name">Buy 2, Save $10</p>
-        <p class="bundle-price">$59.90</p>
-        <p class="bundle-per">$29.95 per disc — save $10</p>
-        <span class="bundle-save">You save $10.00</span>
-        <p class="bundle-includes">2 Flowra Discs<br>2 Satin storage pouches<br>Perfect to gift a friend</p>
-        <button class="btn btn-primary" style="width:100%;margin-top:20px;justify-content:center">Add to Cart</button>
+      <div class="bc pop" onclick="openCheckout('double')">
+        <span class="pop-tag">⭐ Most Popular</span>
+        <p class="bq">2</p>
+        <p class="bn">Buy 2, Save $10</p>
+        <p class="bp">$59.90</p>
+        <p class="bper">$29.95 per disc — save $10</p>
+        <span class="bsave">You save $10.00</span>
+        <p class="binc">2 Flowra Discs<br>2 Satin storage pouches<br>Perfect to gift a friend</p>
+        <button class="btn btn-primary" style="width:100%;justify-content:center">Add to Cart</button>
       </div>
-
-      <!-- Bundle of 3 -->
-      <div class="bundle-card" onclick="openCheckout('triple')">
-        <p class="bundle-qty">3</p>
-        <p class="bundle-name">Buy 3, Get 1 Free</p>
-        <p class="bundle-price">$69.90</p>
-        <p class="bundle-per">$23.30 per disc — save $69.90</p>
-        <span class="bundle-save">You save $69.95 🎉</span>
-        <p class="bundle-includes">3 Flowra Discs + 1 FREE<br>4 Satin storage pouches<br>Best value — share with family</p>
-        <button class="btn btn-outline" style="width:100%;margin-top:20px;justify-content:center">Add to Cart</button>
+      <div class="bc" onclick="openCheckout('triple')">
+        <p class="bq">3+1</p>
+        <p class="bn">Buy 3, Get 1 Free</p>
+        <p class="bp">$69.90</p>
+        <p class="bper">$23.30 per disc</p>
+        <span class="bsave">You save $69.95 🎉</span>
+        <p class="binc">3 Flowra Discs + 1 FREE<br>4 Satin storage pouches<br>Best value — share with family</p>
+        <button class="btn btn-outline" style="width:100%;justify-content:center">Add to Cart</button>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ── FEATURES ── -->
-<section class="sec-cream">
+<!-- TRUST BADGES — after bundles -->
+<div style="background:#fff8f6;border-top:1.5px solid var(--rose-border);border-bottom:1.5px solid var(--rose-border)">
+  <div class="container">
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:28px 0">
+      <div style="display:flex;align-items:center;gap:10px"><span style="font-size:20px">🔒</span><div><p style="font-size:12px;font-weight:700;color:var(--ink)">Stripe Secured</p><p style="font-size:11px;color:var(--hint)">256-bit SSL</p></div></div>
+      <div style="width:1px;height:36px;background:var(--rose-border)"></div>
+      <div style="display:flex;align-items:center;gap:10px"><span style="font-size:20px">↩️</span><div><p style="font-size:12px;font-weight:700;color:var(--ink)">30-Day Guarantee</p><p style="font-size:11px;color:var(--hint)">Full refund, no questions</p></div></div>
+      <div style="width:1px;height:36px;background:var(--rose-border)"></div>
+      <div style="display:flex;align-items:center;gap:10px"><span style="font-size:20px">🌍</span><div><p style="font-size:12px;font-weight:700;color:var(--ink)">Free Worldwide Shipping</p><p style="font-size:11px;color:var(--hint)">Every single order</p></div></div>
+      <div style="width:1px;height:36px;background:var(--rose-border)"></div>
+      <div style="display:flex;align-items:center;gap:10px"><span style="font-size:20px">🛡️</span><div><p style="font-size:12px;font-weight:700;color:var(--ink)">Medical-Grade Silicone</p><p style="font-size:11px;color:var(--hint)">ISO 10993 certified</p></div></div>
+      <div style="width:1px;height:36px;background:var(--rose-border)"></div>
+      <div style="display:flex;align-items:center;gap:10px"><span style="font-size:20px">📦</span><div><p style="font-size:12px;font-weight:700;color:var(--ink)">Discreet Packaging</p><p style="font-size:11px;color:var(--hint)">No branding on box</p></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section style="padding:100px 0;background:var(--cream)">
   <div class="container">
     <p class="section-eyebrow">Why Flowra</p>
     <h2 class="section-title">Designed around you</h2>
     <div class="grid-3">
       <div class="feature-card"><div class="feature-icon">🌸</div><h3 class="feature-title">Forget you're wearing it</h3><p class="feature-desc">The Flowra Disc sits naturally in the vaginal fornix. Most women say they genuinely forget it's there within an hour.</p></div>
-      <div class="feature-card"><div class="feature-icon">🏊</div><h3 class="feature-title">Every activity, covered</h3><p class="feature-desc">Running, swimming, yoga, sleeping — Flowra stays securely in place through it all. No adjusting, no leaks, no thinking about it.</p></div>
+      <div class="feature-card"><div class="feature-icon">🏊</div><h3 class="feature-title">Every activity, covered</h3><p class="feature-desc">Running, swimming, yoga, sleeping — Flowra stays securely in place through it all. No adjusting, no leaks.</p></div>
       <div class="feature-card"><div class="feature-icon">💜</div><h3 class="feature-title">Period sex, mess-free</h3><p class="feature-desc">Unlike cups or tampons, Flowra sits high enough to allow comfortable, mess-free intimacy during your period.</p></div>
       <div class="feature-card"><div class="feature-icon">🛡️</div><h3 class="feature-title">Clinically safe silicone</h3><p class="feature-desc">ISO 10993 medical-grade silicone — same as surgical implants. No chemicals, no fibres, no risk.</p></div>
-      <div class="feature-card"><div class="feature-icon">🌍</div><h3 class="feature-title">Kind to the planet</h3><p class="feature-desc">One disc. Five years. Zero landfill. Switching to Flowra removes over 2,000 single-use products from your footprint.</p></div>
+      <div class="feature-card"><div class="feature-icon">🌍</div><h3 class="feature-title">Kind to the planet</h3><p class="feature-desc">One disc. Five years. Zero landfill. Switching to Flowra removes 2,000+ single-use products from your footprint.</p></div>
       <div class="feature-card"><div class="feature-icon">💰</div><h3 class="feature-title">Pay once, save thousands</h3><p class="feature-desc">At $34.95, Flowra pays for itself in under two months. Over five years you'll save over $900.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ── BED PHOTO ── -->
-<section style="padding:0;overflow:hidden;max-height:480px">
-  <img src="products-bed.jpg" alt="Flowra discs on linen bed" style="width:100%;height:480px;object-fit:cover;object-position:center 40%" />
-</section>
-
-<!-- ── QUOTES ── -->
-<section class="sec-pink">
-  <div class="container">
-    <p class="section-eyebrow">Real women, real results</p>
-    <h2 class="section-title">Life-changing — their words</h2>
-    <div class="grid-2" style="margin-bottom:16px">
-      <div class="quote-card"><p class="review-stars">★★★★★</p><p class="quote-mark">&ldquo;</p><p class="quote-text">I cried the first time I used it. I have endometriosis and tampons were agony. With Flowra I made it through a full work day without pain or leaking. I cannot put into words how much this has changed my life.</p><div class="quote-footer"><div><p class="quote-name">Emma L.</p><p class="quote-loc">Denver, CO</p></div><span class="tag-verified">Verified</span></div></div>
-      <div class="quote-card"><p class="review-stars">★★★★★</p><p class="quote-mark">&ldquo;</p><p class="quote-text">I tried a menstrual cup for two years and never got it right. Flowra took me one try. So much easier, so much more comfortable, and absolutely no leaks. Wish I'd found this sooner.</p><div class="quote-footer"><div><p class="quote-name">Jessica T.</p><p class="quote-loc">Austin, TX</p></div><span class="tag-verified">Verified</span></div></div>
-    </div>
-    <div class="quote-card"><p class="review-stars">★★★★★</p><p class="quote-mark">&ldquo;</p><p class="quote-text">Once I learned what was actually in tampons I felt sick. Dioxins, pesticide residue, synthetic fibres — sitting against the most absorbent part of my body for 30+ years. Switching to Flowra felt like finally taking care of myself. It's genuinely healthier. Every woman deserves to know about this.</p><div class="quote-footer"><div><p class="quote-name">Natalie C.</p><p class="quote-loc">Boston, MA</p></div><span class="tag-verified">Verified</span></div></div>
-  </div>
-</section>
-
-<!-- ── REVIEWS ── -->
-<section class="sec-cream">
+<!-- REVIEWS -->
+<section style="padding:100px 0;background:#fdf5f3">
   <div class="container">
     <p class="section-eyebrow">4.9 stars · 127 verified reviews</p>
     <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px">
@@ -446,14 +422,14 @@
       <a href="reviews.html" style="font-size:13px;color:var(--rose-deep);border-bottom:1px solid var(--rose-soft);padding-bottom:2px">All 127 reviews →</a>
     </div>
     <div class="grid-3">
-      <div class="review-card"><p class="review-stars">★★★★★</p><p class="review-title">Changed everything for me</p><p class="review-body">After one cycle I'm completely converted. No leaks, no discomfort, and I honestly forget I'm wearing it. The satin pouch is such a lovely touch.</p><div class="review-footer"><span class="review-name">Sarah M.</span><div class="review-meta"><span class="review-loc">New York, NY</span><span class="tag-verified">Verified</span></div></div></div>
+      <div class="review-card"><p class="review-stars">★★★★★</p><p class="review-title">Changed everything for me</p><p class="review-body">After one cycle I'm completely converted. No leaks, no discomfort, and I forget I'm wearing it. The satin pouch is such a lovely touch.</p><div class="review-footer"><span class="review-name">Sarah M.</span><div class="review-meta"><span class="review-loc">New York, NY</span><span class="tag-verified">Verified</span></div></div></div>
       <div class="review-card"><p class="review-stars">★★★★★</p><p class="review-title">So much better than my cup</p><p class="review-body">I gave up on menstrual cups after a year of struggling. Flowra was right on the first try — comfortable, zero leaks, no weird suction. I'm obsessed.</p><div class="review-footer"><span class="review-name">Madison K.</span><div class="review-meta"><span class="review-loc">Chicago, IL</span><span class="tag-verified">Verified</span></div></div></div>
       <div class="review-card"><p class="review-stars">★★★★★</p><p class="review-title">No more period anxiety</p><p class="review-body">I used to dread my period every month. Since switching to Flowra I forget it's happening. It's given me back so much peace and confidence.</p><div class="review-footer"><span class="review-name">Caitlin P.</span><div class="review-meta"><span class="review-loc">Philadelphia, PA</span><span class="tag-verified">Verified</span></div></div></div>
     </div>
   </div>
 </section>
 
-<!-- ── CTA ── -->
+<!-- CTA -->
 <section class="cta-section">
   <div class="container">
     <p class="section-eyebrow">Ready to make the switch?</p>
@@ -463,7 +439,7 @@
   </div>
 </section>
 
-<!-- ── CHECKOUT MODAL ── -->
+<!-- CHECKOUT MODAL -->
 <div class="modal-overlay" id="checkout-modal">
   <div class="modal">
     <button class="modal-close" onclick="closeCheckout()">×</button>
@@ -507,7 +483,7 @@
     <div id="payment-element"></div>
     <p id="payment-message" style="color:#e53e3e;font-size:13px;margin:10px 0;display:none"></p>
     <button class="btn btn-primary btn-full" id="pay-btn" onclick="handlePayment()" style="margin-top:16px">Pay $34.95</button>
-    <p style="font-size:12px;color:var(--hint);text-align:center;margin-top:12px">🔒 Secured by Stripe · No card details stored on our servers</p>
+    <p style="font-size:12px;color:var(--hint);text-align:center;margin-top:12px">🔒 Secured by Stripe · No card details stored</p>
   </div>
 </div>
 
@@ -518,16 +494,20 @@
   const BACKEND_URL = 'https://your-backend.vercel.app';
   let stripe, elements, selectedColour = 'Pink';
 
-  const bundlePrices = { single: { label: 'Flowra Disc + Satin Pouch — $34.95', amount: '$34.95' }, double: { label: '2x Flowra Discs — $59.90 (Save $10)', amount: '$59.90' }, triple: { label: '3+1 FREE Flowra Discs — $69.90', amount: '$69.90' } };
+  const bundlePrices = {
+    single: { label: 'Flowra Disc + Satin Pouch — $34.95', amount: '$34.95' },
+    double: { label: '2x Flowra Discs — $59.90 (Save $10)', amount: '$59.90' },
+    triple: { label: '3+1 FREE Flowra Discs — $69.90', amount: '$69.90' }
+  };
 
   function selectColour(colour) {
     selectedColour = colour;
     ['pink','purple','black'].forEach(c => {
-      const el = document.getElementById('opt-' + c);
-      const isSelected = colour.toLowerCase() === c;
-      el.style.border = isSelected ? '2.5px solid var(--rose-deep)' : '1.5px solid var(--rose-border)';
-      el.style.background = isSelected ? 'var(--rose-blush)' : 'var(--white)';
-      el.querySelector('span').style.color = isSelected ? 'var(--rose-deep)' : 'var(--muted)';
+      const el = document.getElementById('opt-'+c);
+      const active = colour.toLowerCase()===c;
+      el.style.border = active ? '2.5px solid var(--rose-deep)' : '1.5px solid var(--rose-border)';
+      el.style.background = active ? 'var(--rose-blush)' : 'var(--white)';
+      el.querySelector('span').style.color = active ? 'var(--rose-deep)' : 'var(--muted)';
     });
   }
 
@@ -539,9 +519,14 @@
     if (!stripe) {
       stripe = Stripe(STRIPE_KEY);
       try {
-        const res = await fetch(BACKEND_URL + '/api/create-payment-intent', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ bundle }) });
+        const res = await fetch(BACKEND_URL + '/api/create-payment-intent', {
+          method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({bundle})
+        });
         const { clientSecret } = await res.json();
-        elements = stripe.elements({ clientSecret, appearance: { theme: 'stripe', variables: { colorPrimary: '#7a1e2e', colorBackground: '#fdf5f3', colorText: '#2e1a1a', fontFamily: 'Lato, sans-serif', borderRadius: '8px' } } });
+        elements = stripe.elements({ clientSecret, appearance: {
+          theme: 'stripe',
+          variables: { colorPrimary: '#7a1e2e', colorBackground: '#fdf5f3', colorText: '#2e1a1a', fontFamily: 'Lato, sans-serif', borderRadius: '8px' }
+        }});
         elements.create('payment').mount('#payment-element');
       } catch(e) {
         const msg = document.getElementById('payment-message');
@@ -556,25 +541,23 @@
   async function handlePayment() {
     const btn = document.getElementById('pay-btn');
     const msg = document.getElementById('payment-message');
-    const origText = btn.textContent;
+    const orig = btn.textContent;
     btn.textContent = 'Processing…'; btn.disabled = true; msg.style.display = 'none';
-    const { error } = await stripe.confirmPayment({ elements, confirmParams: { return_url: window.location.origin + '/success.html' } });
-    if (error) { msg.textContent = error.message; msg.style.display = 'block'; btn.textContent = origText; btn.disabled = false; }
+    const { error } = await stripe.confirmPayment({
+      elements,
+      confirmParams: { return_url: window.location.origin + '/success.html' }
+    });
+    if (error) { msg.textContent = error.message; msg.style.display = 'block'; btn.textContent = orig; btn.disabled = false; }
   }
 
-  document.getElementById('checkout-modal').addEventListener('click', function(e) { if (e.target === this) closeCheckout(); });
+  document.getElementById('checkout-modal').addEventListener('click', function(e) { if (e.target===this) closeCheckout(); });
 
-  // Countdown timer
-  let total = 2 * 3600 + 47 * 60 + 33;
+  let total = 2*3600+47*60+33;
   function tick() {
-    total--;
-    if (total < 0) total = 3 * 3600;
-    const h = String(Math.floor(total / 3600)).padStart(2,'0');
-    const m = String(Math.floor((total % 3600) / 60)).padStart(2,'0');
-    const s = String(total % 60).padStart(2,'0');
-    document.getElementById('cd-h').textContent = h;
-    document.getElementById('cd-m').textContent = m;
-    document.getElementById('cd-s').textContent = s;
+    total--; if(total<0) total=3*3600;
+    document.getElementById('cdh').textContent=String(Math.floor(total/3600)).padStart(2,'0');
+    document.getElementById('cdm').textContent=String(Math.floor((total%3600)/60)).padStart(2,'0');
+    document.getElementById('cds').textContent=String(total%60).padStart(2,'0');
   }
   setInterval(tick, 1000);
 </script>
