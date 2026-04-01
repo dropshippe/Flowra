@@ -4,73 +4,174 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shop — Flowra Disc</title>
-  <meta name="description" content="Buy the Flowra Disc — medical-grade reusable period disc with satin pouch. $34.95 with free worldwide shipping." />
+  <meta name="description" content="Buy the Flowra Disc — medical-grade reusable period disc. $34.95 with free worldwide shipping." />
   <link rel="stylesheet" href="flowra.css" />
+  <style>
+    /* Slider */
+    .slider-wrap { position: relative; border-radius: var(--r-xl); overflow: hidden; aspect-ratio: 1; background: var(--rose-pale); border: 1.5px solid var(--rose-border); margin-bottom: 12px; }
+    .slider-track { display: flex; transition: transform .4s ease; height: 100%; }
+    .slide { min-width: 100%; height: 100%; flex-shrink: 0; }
+    .slide img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+    .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,.85); border: 1.5px solid var(--rose-border); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; color: var(--rose-deep); z-index: 10; transition: all .15s; }
+    .slider-btn:hover { background: var(--white); box-shadow: 0 2px 12px rgba(122,30,46,.12); }
+    .slider-prev { left: 12px; }
+    .slider-next { right: 12px; }
+    .slider-dots { display: flex; justify-content: center; gap: 8px; margin-bottom: 12px; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--rose-border); cursor: pointer; transition: all .2s; border: none; padding: 0; }
+    .dot.active { background: var(--rose-deep); width: 24px; border-radius: 100px; }
+    .thumbs { display: flex; gap: 10px; }
+    .thumb { width: 72px; height: 72px; border-radius: var(--r-md); object-fit: cover; cursor: pointer; border: 2px solid transparent; transition: border-color .2s; opacity: .7; transition: all .2s; }
+    .thumb:hover { opacity: 1; }
+    .thumb.active { border-color: var(--rose-deep); opacity: 1; }
+
+    /* Colour */
+    .colour-btn { border: 2px solid var(--rose-border); border-radius: var(--r-pill); padding: 10px 18px; font-size: 12px; font-weight: 700; cursor: pointer; background: var(--white); color: var(--muted); display: inline-flex; align-items: center; gap: 8px; transition: all .15s; font-family: var(--ff-sans); }
+    .colour-btn.active { border-color: var(--rose-deep); background: var(--rose-blush); color: var(--rose-deep); }
+    .col-dot { width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0; }
+
+    /* Qty */
+    .qty-wrap { display: flex; align-items: center; border: 1.5px solid var(--rose-border); border-radius: var(--r-sm); overflow: hidden; }
+    .qty-btn { width: 44px; height: 50px; font-size: 20px; color: var(--muted); background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .15s; font-family: var(--ff-sans); }
+    .qty-btn:hover { background: var(--rose-blush); }
+    .qty-num { width: 44px; text-align: center; font-size: 15px; }
+    .spec-row { display: flex; justify-content: space-between; padding: 11px 0; border-bottom: 1px solid var(--rose-border); font-size: 14px; }
+    .spec-label { color: var(--hint); }
+
+    /* Urgency */
+    .urgency-bar { background: #7a1e2e; color: #fff; text-align: center; padding: 10px 20px; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    .cd { background: rgba(255,255,255,.2); border-radius: 6px; padding: 3px 8px; font-size: 14px; font-weight: 700; min-width: 36px; text-align: center; }
+    .breadcrumb { font-size: 12px; color: var(--hint); margin-bottom: 40px; letter-spacing: .04em; }
+    .breadcrumb a:hover { color: var(--rose-deep); }
+
+    @media (max-width: 860px) { .product-grid { grid-template-columns: 1fr; gap: 40px; } }
+  </style>
 </head>
 <body>
 
+<!-- Urgency bar -->
+<div class="urgency-bar">
+  <span>🔥 Only 47 left — Sale ends in</span>
+  <div style="display:flex;gap:6px;align-items:center">
+    <div class="cd" id="cdh">02</div><span style="opacity:.6">:</span>
+    <div class="cd" id="cdm">47</div><span style="opacity:.6">:</span>
+    <div class="cd" id="cds">33</div>
+  </div>
+  <span>⚡ Free worldwide shipping</span>
+</div>
+
 <main>
-  <div class="container" style="padding:64px 32px 120px">
+  <div class="container" style="padding:56px 32px 120px">
 
     <p class="breadcrumb"><a href="index.html">Home</a> &nbsp;·&nbsp; Shop</p>
 
-    <div class="product-grid">
+    <div class="product-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start">
 
-      <!-- Image -->
-      <div class="sticky-img">
-        <div class="hero-img-wrap">
-          <div class="hero-img-glow"></div>
-          <div class="hero-img-box" style="border-radius:var(--r-xl)">
-            <img src="product.jpg" alt="Flowra Disc with satin pouch" onerror="this.style.display='none'" />
+      <!-- Image slider -->
+      <div style="position:sticky;top:100px">
+        <div class="slider-wrap" id="slider">
+          <div class="slider-track" id="track">
+            <!-- Slide 1: Blush flat lay -->
+            <div class="slide"><img src="blush pink.png" alt="Flowra Disc with blush satin pouch and rose petals" /></div>
+            <!-- Slide 2: Pink colour on bed -->
+            <div class="slide"><img src="products on bed.jpg" alt="Flowra Discs in multiple colours on bed" /></div>
+            <!-- Slide 3: Woman holding -->
+            <div class="slide"><img src="holding near face.jpg" alt="Woman holding Flowra disc" style="object-position:center 10%" /></div>
           </div>
+          <button class="slider-btn slider-prev" onclick="slide(-1)">&#8592;</button>
+          <button class="slider-btn slider-next" onclick="slide(1)">&#8594;</button>
+        </div>
+
+        <!-- Dots -->
+        <div class="slider-dots">
+          <button class="dot active" onclick="goTo(0)"></button>
+          <button class="dot" onclick="goTo(1)"></button>
+          <button class="dot" onclick="goTo(2)"></button>
+        </div>
+
+        <!-- Thumbnails -->
+        <div class="thumbs">
+          <img src="blush pink.png" class="thumb active" onclick="goTo(0)" alt="Flat lay" />
+          <img src="products on bed.jpg" class="thumb" onclick="goTo(1)" alt="Colours on bed" />
+          <img src="holding near face.jpg" class="thumb" onclick="goTo(2)" alt="Woman holding" style="object-position:center 10%" />
         </div>
       </div>
 
-      <!-- Info -->
+      <!-- Product info -->
       <div>
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
-          <span class="review-stars">★★★★★</span>
-          <a href="reviews.html" style="font-size:13px;color:var(--muted);border-bottom:1px solid var(--rose-border);padding-bottom:1px">4.9 · 12 reviews</a>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px">
+          <span class="review-stars" style="font-size:16px;color:#c4703a;letter-spacing:2px">★★★★★</span>
+          <a href="reviews.html" style="font-size:13px;color:var(--muted);border-bottom:1px solid var(--rose-border);padding-bottom:1px">4.9 · 127 verified reviews</a>
         </div>
 
-        <h1 style="font-family:var(--ff-serif);font-size:42px;margin-bottom:16px;line-height:1.1">Flowra Disc</h1>
-        <p style="font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:32px">
-          The Flowra Disc is a soft, flexible period disc crafted from 100% medical-grade silicone. Designed for up to 12 hours of continuous wear — through workouts, sleep, and everything in between. A safer, healthier, life-changing alternative to tampons and menstrual cups.
+        <h1 style="font-family:var(--ff-serif);font-size:44px;margin-bottom:14px;line-height:1.1">Flowra Disc</h1>
+        <p style="font-size:15px;color:var(--muted);line-height:1.85;margin-bottom:28px">
+          The Flowra Disc is crafted from 100% medical-grade silicone for up to 12 hours of comfortable, worry-free protection. A safer, healthier alternative to tampons and cups — and once you try it, you'll never look back.
         </p>
 
-        <p style="font-family:var(--ff-serif);font-size:36px;margin-bottom:8px">$34.95</p>
-        <p style="font-size:13px;color:var(--hint);margin-bottom:32px">Free worldwide shipping · Usually ships within 1 business day</p>
+        <p style="font-family:var(--ff-serif);font-size:38px;margin-bottom:6px">$34.95</p>
+        <p style="font-size:13px;color:var(--hint);margin-bottom:28px">Free worldwide shipping · Usually ships within 1 business day</p>
+
+        <!-- Urgency nudge -->
+        <div style="background:#fff5f0;border:1.5px solid #f0c8b8;border-radius:var(--r-md);padding:12px 16px;margin-bottom:24px;display:flex;align-items:center;gap:10px">
+          <span style="font-size:18px">🔥</span>
+          <div>
+            <p style="font-size:12px;font-weight:700;color:#7a2e1a">Only 47 left in stock</p>
+            <p style="font-size:11px;color:#a05030">23 people are viewing this right now</p>
+          </div>
+        </div>
+
+        <!-- Colour selector -->
+        <div style="margin-bottom:28px">
+          <p style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:12px">
+            Colour — <span id="colour-label" style="color:var(--rose-deep)">Pink</span>
+          </p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button class="colour-btn active" id="btn-pink" onclick="pickColour('Pink','btn-pink',0)">
+              <span class="col-dot" style="background:#f0a8b4;border:1.5px solid #e090a0"></span>Pink
+            </button>
+            <button class="colour-btn" id="btn-purple" onclick="pickColour('Purple','btn-purple',1)">
+              <span class="col-dot" style="background:#9b59b6;border:1.5px solid #8e44ad"></span>Purple
+            </button>
+            <button class="colour-btn" id="btn-black" onclick="pickColour('Black','btn-black',1)">
+              <span class="col-dot" style="background:#2c2c2c;border:1.5px solid #111"></span>Black
+            </button>
+          </div>
+          <p style="font-size:12px;color:var(--hint);margin-top:10px">All colours come with a matching satin storage pouch</p>
+        </div>
 
         <!-- Qty + CTA -->
-        <div style="display:flex;gap:12px;margin-bottom:28px;align-items:center">
+        <div style="display:flex;gap:12px;margin-bottom:24px;align-items:center">
           <div class="qty-wrap">
             <button class="qty-btn" onclick="changeQty(-1)">−</button>
             <span class="qty-num" id="qty">1</span>
             <button class="qty-btn" onclick="changeQty(1)">+</button>
           </div>
-          <button class="btn btn-primary" style="flex:1" onclick="openCheckout()">Add to Cart</button>
+          <button class="btn btn-primary" style="flex:1;font-size:14px;padding:16px" onclick="openCheckout()">Add to Cart</button>
         </div>
+
+        <button class="btn btn-outline" style="width:100%;margin-bottom:28px;font-size:13px" onclick="window.location.href='index.html#bundles'">
+          🎁 &nbsp;Buy 2 save $10 — View bundles
+        </button>
 
         <!-- Trust -->
-        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:40px">
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:36px">
           <p style="font-size:13px;color:var(--muted)">✓ &nbsp;30-day satisfaction guarantee</p>
-          <p style="font-size:13px;color:var(--muted)">✓ &nbsp;Free returns on damaged or incorrect items</p>
-          <p style="font-size:13px;color:var(--muted)">✓ &nbsp;Discreet packaging — no branding on box</p>
-          <p style="font-size:13px;color:var(--muted)">✓ &nbsp;Payments secured by Stripe</p>
           <p style="font-size:13px;color:var(--muted)">✓ &nbsp;Free worldwide shipping on every order</p>
+          <p style="font-size:13px;color:var(--muted)">✓ &nbsp;Discreet packaging — no branding on the box</p>
+          <p style="font-size:13px;color:var(--muted)">✓ &nbsp;Payments secured by Stripe</p>
         </div>
 
-        <hr class="divider" style="margin-bottom:36px" />
+        <hr class="divider" style="margin-bottom:32px" />
 
         <!-- What's included -->
-        <div style="margin-bottom:36px">
-          <p style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--hint);margin-bottom:16px">What's included</p>
-          <p class="include-item">— One Flowra Disc (medical-grade silicone)</p>
-          <p class="include-item">— Luxury satin storage pouch</p>
-          <p class="include-item">— Quick-start guide</p>
+        <div style="margin-bottom:32px">
+          <p style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--hint);margin-bottom:14px">What's included</p>
+          <p style="font-size:14px;color:var(--ink);margin-bottom:8px">— One Flowra Disc (medical-grade silicone)</p>
+          <p style="font-size:14px;color:var(--ink);margin-bottom:8px">— Luxury satin storage pouch (colour matched)</p>
+          <p style="font-size:14px;color:var(--ink)">— Quick-start guide</p>
         </div>
 
-        <hr class="divider" style="margin-bottom:36px" />
+        <hr class="divider" style="margin-bottom:32px" />
 
         <!-- Specs -->
         <div>
@@ -82,26 +183,27 @@
           <div class="spec-row"><span class="spec-label">Fit</span><span>One size fits most</span></div>
           <div class="spec-row"><span class="spec-label">Certification</span><span>ISO 10993 biocompatibility</span></div>
           <div class="spec-row"><span class="spec-label">BPA free</span><span>Yes</span></div>
+          <div class="spec-row"><span class="spec-label">Available colours</span><span>Pink, Purple, Black</span></div>
         </div>
       </div>
     </div>
   </div>
 </main>
 
-<!-- Checkout modal (same as index) -->
+<!-- Checkout Modal -->
 <div class="modal-overlay" id="checkout-modal">
   <div class="modal">
     <button class="modal-close" onclick="closeCheckout()">×</button>
     <h2 class="modal-title">Complete your order</h2>
-    <p class="modal-sub">Flowra Disc + Satin Pouch — $34.95</p>
+    <p class="modal-sub" id="modal-sub">Flowra Disc + Satin Pouch — $34.95</p>
     <div class="modal-trust">
       <span>🌍 Free worldwide shipping</span>
       <span>↩️ 30-day guarantee</span>
       <span>🔒 Secure checkout</span>
     </div>
     <div id="payment-element"></div>
-    <p id="payment-message"></p>
-    <button class="btn btn-primary btn-full" id="pay-btn" onclick="handlePayment()">Pay $34.95</button>
+    <p id="payment-message" style="color:#e53e3e;font-size:13px;margin:10px 0;display:none"></p>
+    <button class="btn btn-primary btn-full" id="pay-btn" onclick="handlePayment()" style="margin-top:16px">Pay $34.95</button>
     <p style="font-size:12px;color:var(--hint);text-align:center;margin-top:12px">🔒 Secured by Stripe · No card details stored</p>
   </div>
 </div>
@@ -111,13 +213,45 @@
 <script>
   const STRIPE_KEY = 'pk_test_REPLACE_ME';
   const BACKEND_URL = 'https://your-backend.vercel.app';
-  let stripe, elements;
+  let stripe, elements, currentSlide = 0, selectedColour = 'Pink';
 
+  // Slider
+  function updateSlider() {
+    document.getElementById('track').style.transform = `translateX(-${currentSlide * 100}%)`;
+    document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+    document.querySelectorAll('.thumb').forEach((t, i) => t.classList.toggle('active', i === currentSlide));
+  }
+  function slide(dir) { currentSlide = (currentSlide + dir + 3) % 3; updateSlider(); }
+  function goTo(i) { currentSlide = i; updateSlider(); }
+
+  // Touch/swipe support
+  let touchStartX = 0;
+  document.getElementById('slider').addEventListener('touchstart', e => touchStartX = e.touches[0].clientX);
+  document.getElementById('slider').addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) slide(diff > 0 ? 1 : -1);
+  });
+
+  // Auto-slide every 4 seconds
+  setInterval(() => slide(1), 4000);
+
+  // Quantity
   function changeQty(d) {
     const el = document.getElementById('qty');
     el.textContent = Math.max(1, parseInt(el.textContent) + d);
   }
 
+  // Colour picker — also switches slider to show relevant image
+  function pickColour(name, btnId, slideIndex) {
+    selectedColour = name;
+    document.getElementById('colour-label').textContent = name;
+    document.querySelectorAll('.colour-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(btnId).classList.add('active');
+    document.getElementById('modal-sub').textContent = `Flowra Disc (${name}) + Satin Pouch — $34.95`;
+    goTo(slideIndex);
+  }
+
+  // Checkout
   async function openCheckout() {
     document.getElementById('checkout-modal').classList.add('open');
     if (!stripe) {
@@ -131,8 +265,9 @@
         }});
         elements.create('payment').mount('#payment-element');
       } catch(e) {
-        document.getElementById('payment-message').style.display = 'block';
-        document.getElementById('payment-message').textContent = 'Could not load payment form. Please try again.';
+        const msg = document.getElementById('payment-message');
+        msg.style.display = 'block';
+        msg.textContent = 'Could not load payment form. Please try again.';
       }
     }
   }
@@ -143,11 +278,25 @@
     const btn = document.getElementById('pay-btn');
     const msg = document.getElementById('payment-message');
     btn.textContent = 'Processing…'; btn.disabled = true; msg.style.display = 'none';
-    const { error } = await stripe.confirmPayment({ elements, confirmParams: { return_url: window.location.origin + '/success.html' } });
+    const { error } = await stripe.confirmPayment({
+      elements,
+      confirmParams: { return_url: window.location.origin + '/success.html' }
+    });
     if (error) { msg.textContent = error.message; msg.style.display = 'block'; btn.textContent = 'Pay $34.95'; btn.disabled = false; }
   }
 
   document.getElementById('checkout-modal').addEventListener('click', function(e) { if (e.target === this) closeCheckout(); });
+
+  // Countdown
+  let total = 2*3600+47*60+33;
+  function tick() {
+    total--;
+    if (total < 0) total = 3*3600;
+    document.getElementById('cdh').textContent = String(Math.floor(total/3600)).padStart(2,'0');
+    document.getElementById('cdm').textContent = String(Math.floor((total%3600)/60)).padStart(2,'0');
+    document.getElementById('cds').textContent = String(total%60).padStart(2,'0');
+  }
+  setInterval(tick, 1000);
 </script>
 </body>
 </html>
