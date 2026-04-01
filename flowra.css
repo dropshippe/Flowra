@@ -44,11 +44,12 @@ img { max-width: 100%; display: block; }
 @media (max-width: 640px) { .nav-links { display: none; } }
 
 /* Buttons */
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--ff-sans); font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; border-radius: var(--r-pill); cursor: pointer; transition: all .18s; border: none; }
-.btn-primary { background: var(--rose-deep); color: #fff; padding: 15px 34px; }
-.btn-primary:hover { background: var(--rose-mid); }
-.btn-outline { background: var(--white); color: var(--rose-deep); padding: 13px 30px; border: 3px solid var(--rose-deep); }
-.btn-outline:hover { background: var(--rose-blush); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--ff-sans); font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; border-radius: var(--r-pill); cursor: pointer; transition: all .18s; border: none; text-decoration: none; }
+.btn-primary { background-color: #7a1e2e !important; color: #ffffff !important; padding: 15px 34px; border: none; }
+.btn-primary:hover { background-color: #a83248 !important; color: #ffffff !important; }
+.btn-primary:disabled { opacity: .5; cursor: not-allowed; }
+.btn-outline { background-color: #ffffff !important; color: #7a1e2e !important; padding: 13px 30px; border: 3px solid #7a1e2e !important; }
+.btn-outline:hover { background-color: #fde8e4 !important; color: #7a1e2e !important; }
 .btn-full { width: 100%; }
 
 /* Pill / badge */
